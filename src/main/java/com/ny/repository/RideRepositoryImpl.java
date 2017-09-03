@@ -1,4 +1,4 @@
-package com.pluralsight.repository;
+package com.ny.repository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import com.pluralsight.model.Ride;
+import com.ny.model.Ride;
 
 @Repository("rideRepository")
 public class RideRepositoryImpl implements RideRepository {
@@ -23,6 +23,13 @@ public class RideRepositoryImpl implements RideRepository {
 		List <Ride> rides = new ArrayList<>();
 		rides.add(ride);
 		return rides;
+	}
+
+	@Override
+	public Ride createRide(Ride ride) {
+		jdbcTemplate.update("insert into ride (name, duration) values (?, ?)", ride.getName(), ride.getDuration());
+		
+		return null;
 	}
 	
 }

@@ -1,4 +1,4 @@
-package com.pluralsight.model;
+package com.ny.model;
 
 public class Ride {
 

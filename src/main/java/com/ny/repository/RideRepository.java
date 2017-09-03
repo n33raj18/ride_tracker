@@ -1,11 +1,13 @@
-package com.pluralsight.repository;
+package com.ny.repository;
 
 import java.util.List;
 
-import com.pluralsight.model.Ride;
+import com.ny.model.Ride;
 
 public interface RideRepository {
 
 	List<Ride> getRides();
+
+	Ride createRide(Ride ride);
 
 }
