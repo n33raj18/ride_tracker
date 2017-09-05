@@ -114,8 +114,8 @@ public class RideRepositoryImpl implements RideRepository {
 
 	@Override
 	public Ride updateRide(Ride ride) {
-		jdbcTemplate.update("update ride set name=? and duration=? where id=?", ride.getName(), ride.getDuration(), ride.getId());
-		return null;
+		jdbcTemplate.update("update ride set name = ?, duration = ? where id = ?", ride.getName(), ride.getDuration(), ride.getId());
+		return ride;
 	}
 	
 }
