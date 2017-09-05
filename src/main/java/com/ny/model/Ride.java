@@ -3,6 +3,11 @@ package com.ny.model;
 public class Ride {
 
 	private Integer id;
+	private String name;
+	private int duration;
+
+	public Ride() {
+	}
 
 	public Integer getId() {
 		return id;
@@ -11,10 +16,7 @@ public class Ride {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-
-	private String name;
-	private int duration;
-
+	
 	public int getDuration() {
 		return duration;
 	}
