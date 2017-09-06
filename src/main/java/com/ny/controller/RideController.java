@@ -41,4 +41,10 @@ public class RideController {
 		return rideService.getRide(id);
 	}
 	
+	@RequestMapping(value = "/batch", method = RequestMethod.GET)
+	public @ResponseBody Object batch() {
+		rideService.batch();
+		return null;
+	}
+	
 }
