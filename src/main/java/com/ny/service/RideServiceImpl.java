@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.ny.model.Ride;
 import com.ny.repository.RideRepository;
@@ -37,6 +38,7 @@ public class RideServiceImpl implements RideService {
 	}
 
 	@Override
+	@Transactional
 	public void batch() {
 		List<Ride> rides = rideRepository.getRides();
 		
@@ -48,7 +50,9 @@ public class RideServiceImpl implements RideService {
 		}
 		rideRepository.updateRides(pairs);
 		
-		
+		/*throw new DataAccessException("Testing transactional rollback") {
+			private static final long serialVersionUID = 1L;
+		};*/
 	}
 
 	@Override

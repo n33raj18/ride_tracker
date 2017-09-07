@@ -3,7 +3,11 @@ package com.ny.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ny.model.Ride;
 import com.ny.service.RideService;
+import com.ny.util.ServiceError;
 
 @Controller
 public class RideController {
@@ -51,6 +56,21 @@ public class RideController {
 	public @ResponseBody Object deleteRide(@PathVariable(value="id") Integer id) {
 		rideService.deleteRide(id);
 		return null;
+	}
+	
+	@RequestMapping(value = "/test", method = RequestMethod.GET)
+	public @ResponseBody Object test() {
+		throw new DataAccessException("Testing exception thrown") {
+			private static final long serialVersionUID = 1L;
+		};
+
+	}
+	
+	@ExceptionHandler(RuntimeException.class)
+	public ResponseEntity<ServiceError> handle(RuntimeException ex){
+		ServiceError error = new ServiceError(HttpStatus.OK.value(), ex.getMessage());
+		System.out.println("Caught exception with message: " +  ex.getMessage());
+		return new ResponseEntity<>(error, HttpStatus.OK);
 	}
 	
 }
