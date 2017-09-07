@@ -13,14 +13,14 @@ import org.junit.Test;
 
 public class RestControllerTest {
 
-	@Test(timeout=3000)
+	@Test(timeout=10000)
 	public void testCreateRide() {
 		
 		RestTemplate restTemplate = new RestTemplate();
 		
 		Ride ride = new Ride();
-		ride.setName("Yellow Fork Trail");
-		ride.setDuration(33);
+		ride.setName("Green Fork Trail");
+		ride.setDuration(40);
 		ride = restTemplate.postForObject("http://localhost:8080/ride_tracker/ride", ride, Ride.class);
 		
 	}
@@ -65,6 +65,14 @@ public class RestControllerTest {
 		RestTemplate restTemplate = new RestTemplate();
 		
 		restTemplate.getForObject("http://localhost:8080/ride_tracker/batch", Object.class);
+		
+	}
+	
+	@Test(timeout=10000)
+	public void testDelete() {
+		RestTemplate restTemplate = new RestTemplate();
+		
+		restTemplate.delete("http://localhost:8080/ride_tracker/delete/1", Object.class);
 		
 	}
 }

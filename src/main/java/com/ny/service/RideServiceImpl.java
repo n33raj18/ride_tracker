@@ -50,4 +50,10 @@ public class RideServiceImpl implements RideService {
 		
 		
 	}
+
+	@Override
+	public void deleteRide(Integer id) {
+		rideRepository.deleteRide(id);
+		
+	}
 }
